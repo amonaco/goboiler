@@ -1,0 +1,9 @@
+[http]
+addr = "0.0.0.0"
+port = "8080"
+
+[postgresql]
+url = "postgres://postgres:postgres@localhost:5432/goboiler?sslmode=disable"
+
+[redis]
+auth = "secret"
