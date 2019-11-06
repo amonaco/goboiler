@@ -8,8 +8,8 @@ import (
 	"time"
 
 	"github.com/go-chi/chi/middleware"
+	"github.com/pelletier/go-toml"
 	"github.com/sirupsen/logrus"
-	"github.com/spf13/viper"
 )
 
 var (
@@ -23,9 +23,9 @@ type StructuredLogger struct {
 }
 
 // NewLogger creates and configures a new logrus Logger.
-func NewLogger() *logrus.Logger {
+func NewLogger(config *toml.Tree) *logrus.Logger {
 	Logger = logrus.New()
-	if viper.GetBool("log_textlogging") {
+	if config.Get("logger.textlogging").(bool) {
 		Logger.Formatter = &logrus.TextFormatter{
 			DisableTimestamp: true,
 		}
@@ -35,7 +35,7 @@ func NewLogger() *logrus.Logger {
 		}
 	}
 
-	level := viper.GetString("log_level")
+	level := config.Get("logger.level").(string)
 	if level == "" {
 		level = "error"
 	}

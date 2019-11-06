@@ -7,3 +7,7 @@ url = "postgres://postgres:postgres@localhost:5432/goboiler?sslmode=disable"
 
 [redis]
 auth = "secret"
+
+[logger]
+textlogging = false
+level = "debug"

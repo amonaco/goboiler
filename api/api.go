@@ -26,7 +26,7 @@ func (app *App) ExampleEndpoint(w http.ResponseWriter, r *http.Request) {
 }
 
 func New(config *toml.Tree) (*chi.Mux, error) {
-	logger := logging.NewLogger()
+	logger := logging.NewLogger(config)
 
 	db, err := database.DBConn(config)
 	if err != nil {
